@@ -34,9 +34,62 @@ package edu.wit.scds.ds.lists.app.game ;
  */
 public class Hand extends Pile
     {
-    // TODO implement this
-
-
+    
+    public Card hit(Deck deck)
+    {
+    Card newCard = deck.deal();
+    
+    this.add(newCard);
+    
+    
+    return newCard;
+    }
+    
+    public int getScore()
+    {
+    return this.eval();
+    }
+    
+    
+    /*
+     * Helper methods
+     */
+    
+    private static int evalAce(int score) 
+        {
+    if (score <= 10) 
+        {
+        return 11;
+    } 
+    return 1;
+        }
+    
+    private int eval()
+    {
+    int numAces = 0;
+    int score = 0;
+    
+    for (Card card : this.cards)
+        {
+        if (card.rank == Rank.ACE)
+            {
+            numAces++;
+            }
+        else
+            {
+            score += card.rank.getPoints();
+            }
+        }
+    
+    for (int k = 0; k < numAces; k++)
+        {
+        score += evalAce(score);
+        }
+    return score;
+    }
+    
+    
+    
     /**
      * (optional) test driver
      *
@@ -45,7 +98,26 @@ public class Hand extends Pile
      */
     public static void main( final String[] args )
         {
-        // OPTIONAL for testing and debugging
+        
+        Deck deck = new Deck();
+        Hand hand = new Hand();
+        
+        hand.hit( deck );
+        
+        System.out.println( hand.getScore() ) ;
+        
+        hand.hit( deck );
+        
+        System.out.println( hand.getScore() ) ;
+        
+        for (Card card : hand.cards)
+            {
+            card.flip();
+            }
+        
+        System.out.println( deck.cards.size() ) ;
+        
+        System.out.println( hand ) ;
 
         }	// end main()
 

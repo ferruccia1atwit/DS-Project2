@@ -34,7 +34,35 @@ package edu.wit.scds.ds.lists.app.game ;
  */
 public class Player
     {
-    // TODO implement this
+    
+    /*
+     * Data fields
+     */
+    
+    String name = new String();
+    Hand hand;
+    int score;
+    int balance;
+    
+    
+    public Player(String username)
+    {
+    
+    this.name = username;
+    this.hand = new Hand();
+    this.score = 0;
+    this.balance = 500;
+    
+    }
+    
+    void resetHand()
+    {
+    this.hand = new Hand();
+    } 
+    
+    
+    //TODO add gambling!!!
+   
 
 
     /**

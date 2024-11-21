@@ -25,6 +25,9 @@
 
 package edu.wit.scds.ds.lists.app.game ;
 
+import java.util.ArrayList ;
+import java.util.Collection ;
+import java.util.Collections ;
 import java.util.List ;
 
 /**
@@ -32,7 +35,7 @@ import java.util.List ;
  * <p>
  * the bottom card is at position 0
  *
- * @author Your Name    // TODO
+ * @author Anthony Ferrucci
  *
  * @version 1.0 2024-10-31 Initial implementation
  */
@@ -42,17 +45,154 @@ public class Pile
     // data fields
     /** the list of cards - directly accessible by subclasses */
     protected List<Card> cards ;    // instantiate an ArrayList in the constructor
+    
+    //initial capacity for Pile arraylist
+    private static final int INITIAL_CAPACITY = 104;
 
+    
+    /**
+     * No-arg Constructor
+     * Use initial capacity
+     */
+    public Pile()
+    {
+    this.cards = new ArrayList<>(INITIAL_CAPACITY);
+    }
+    
+    /**
+     * Constructor
+     * @param capacity
+     * NOTE: Might not need this in our application
+     */
+    public Pile(int capacity)
+    {
+    this.cards = new ArrayList<>(capacity);
+    }
+    
 
-    // TODO implement this
-
-
+    /**
+     * Print out all cards in the ArrayList
+     */
     @Override
     public String toString()            // debugging aid
         {
         return this.cards.toString() ;
 
         }	// end toString()
+    
+    
+    
+    /**
+     * Add a card to the pile
+     * 
+     * @param card
+     * @return
+     */
+    public boolean add(Card card) 
+    {
+    
+    return this.cards.add( card );
+    
+    }
+    
+    
+    /**
+     * Merge two piles into this one
+     * 
+     * @param anotherPile
+     * @return
+     */
+    public boolean add(Collection<Card> anotherPile)
+    {
+    return this.cards.addAll( anotherPile );
+    }
+    
+    
+    /**
+     * 
+     * Remove a card from the pile
+     * 
+     * @param card
+     * @return whether a card could be removed
+     */
+    public boolean remove(Card card) 
+    {
+    if (this.isEmpty())
+        {
+        return false;
+        }
+    return this.cards.remove( card );
+    
+    }
+    
+    
+    /**
+     * Remove a card from the top of the deck
+     * 
+     * @return removed card
+     * Null if no cards in Pile
+     */
+    public Card remove()
+    {
+    
+    if (this.isEmpty())
+        {
+        return null;
+        }
+    
+    Card toRemove = this.cards.get( 0 );
+    
+    this.remove(toRemove);
+    
+    return toRemove;
+    
+    }
+    
+    /**
+     * Whether a pile contains a card
+     * 
+     * @param card
+     * @return
+     */
+    public boolean contains(Card card)
+    {
+    
+    return this.cards.contains( card );
+    
+    }
+    
+    /**
+     * Shuffle the cards
+     * 
+     */
+    public void shuffle()
+    {
+    
+    Collections.shuffle( cards );
+    
+    }
+    
+    /**
+     * Sort the cards using the cards compareTo implementation
+     * 
+     */
+    public void sort()
+    {
+    
+    Collections.sort( cards );
+    
+    }
+    
+    /**
+     * Return if cards is empty
+     * 
+     * @return
+     */
+    public boolean isEmpty()
+    {
+    return this.cards.isEmpty();
+    }
+    
 
 
     /**
