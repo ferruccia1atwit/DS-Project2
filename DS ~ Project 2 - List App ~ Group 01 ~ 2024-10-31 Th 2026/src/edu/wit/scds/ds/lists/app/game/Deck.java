@@ -65,7 +65,7 @@ public class Deck extends Pile
 
             // build a card
             final Card newCard = new Card( suit, rank ) ;
-            System.out.printf( " %s", newCard ) ;
+            //System.out.printf( " %s", newCard ) ;
 
             // keep track of it
             this.cards.add( newCard ) ;
