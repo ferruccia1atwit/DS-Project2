@@ -24,8 +24,8 @@ public class Blackjack
     void reset()
     {
     this.deck = new Deck();
-    this.player.resetHand();
-    this.dealer.resetHand();
+    this.player.resetRound();
+    this.dealer.resetRound();
     }
     
     String getMove(Scanner s)
@@ -106,11 +106,11 @@ public class Blackjack
         System.out.printf( "%s hand: %s%n", this.player.name, this.player.hand ) ;
         
         //get the winner
-        if (this.player.score > this.dealer.score)
+        if (( this.player.score > this.dealer.score || this.dealer.isBust ) && !this.player.isBust)
             {
             System.out.printf( "%s wins!", this.player.name) ;
             }
-        else if (this.player.score < this.dealer.score)
+        else if (( this.player.score < this.dealer.score || this.player.isBust ) && !this.dealer.isBust)
             {
             System.out.printf( "%s wins!", this.dealer.name ) ;
             }

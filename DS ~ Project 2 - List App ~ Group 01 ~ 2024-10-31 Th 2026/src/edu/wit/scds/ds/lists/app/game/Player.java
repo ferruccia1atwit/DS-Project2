@@ -43,6 +43,7 @@ public class Player
     Hand hand;
     int score;
     int balance;
+    boolean isBust;
     
     
     public Player(String username)
@@ -52,12 +53,14 @@ public class Player
     this.hand = new Hand();
     this.score = 0;
     this.balance = 500;
+    this.isBust = false;
     
     }
     
-    void resetHand()
+    void resetRound()
     {
     this.hand = new Hand();
+    this.isBust = false;
     } 
     
     
