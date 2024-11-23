@@ -63,8 +63,24 @@ public class Player
     } 
     
     
+    public void hit(Deck deck, boolean reveal)
+    {
+    Card newCard = this.hand.hit( deck );
+    if (reveal)
+        {
+        newCard.reveal();
+        }
+    
+    }
+    
+    //score
+    public void keepScore()
+    {
+    this.score = this.hand.getScore();
+    }
+    
     //TODO add gambling!!!
-   
+    
 
 
     /**
