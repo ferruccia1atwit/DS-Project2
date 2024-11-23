@@ -28,7 +28,7 @@ package edu.wit.scds.ds.lists.app.game;
 /**
  * Representation of a deck of cards
  *
- * @author //TODO
+ * @author Robert
  *
  * @version 1.0 2024-10-31 Initial implementation
  */
@@ -63,17 +63,13 @@ public class Deck extends Pile
                 continue ;
                 }
 
-            // build a card
-            final Card newCard = new Card( suit, rank ) ;
-            //System.out.printf( " %s", newCard ) ;
-
-            // keep track of it
-            this.cards.add( newCard ) ;
+            // add a new card to the deck
+            this.cards.add(new Card(suit, rank)) ;
             }
 
         }
     
-    this.shuffle();
+    this.shuffle() ;
     
     }
     
@@ -87,7 +83,7 @@ public class Deck extends Pile
     public Card deal()
     {
     
-    return this.remove();
+    return this.remove() ;
     
     }
 
@@ -102,24 +98,22 @@ public class Deck extends Pile
         {
         // OPTIONAL for testing and debugging
         
-        Deck myDeck = new Deck();
+        Deck myDeck = new Deck() ;
         
         //these are all hidden
-        System.out.println( myDeck.toString() );
+        System.out.println( "Initial deck (face down):" ) ;
+        System.out.println( myDeck ) ;
         
         //flip them over
         
         for (Card card : myDeck.cards)
             {
-            card.flip();
+            card.flip() ;
             }
         
-        System.out.println( myDeck.toString() ) ;
-            
-        System.out.println(myDeck.deal());
-        
+        Card dealtCard = myDeck.deal() ;
+        System.out.printf( "Dealt Card: %n", dealtCard ) ;
         System.out.println( myDeck ) ;
-        
 
         }   // end main()
 
