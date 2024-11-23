@@ -41,12 +41,11 @@ public class Blackjack
     
     void dealerMove()
     {
-    this.dealer.hand.cards.get(0).reveal();
+    this.dealer.hand.cards.get(1).reveal();
     while (this.dealer.score < 17)
         {
-        this.dealer.hand.hit( deck );
-        this.dealer.score = dealer.hand.getScore();
-        this.dealer.hand.cards.get(this.dealer.hand.cards.size() - 1).reveal();
+        this.dealer.hit( this.deck, true );
+        this.dealer.keepScore();
         }
     if (this.dealer.score > 21)
         {
@@ -64,18 +63,16 @@ public class Blackjack
         
         //deal cards to dealer first, then player
         
-        this.dealer.hand.hit( this.deck );
-        this.dealer.hand.hit( this.deck );
-        this.dealer.hand.cards.get(1).reveal();
+        this.dealer.hit( this.deck, true );
+        this.dealer.hit( this.deck, false );
         
         
-        this.player.hand.hit( this.deck );
-        this.player.hand.hit( this.deck );
-        this.player.hand.cards.get(0).reveal();
-        this.player.hand.cards.get(1).reveal();
+        this.player.hit( this.deck, true );
+        this.player.hit( this.deck, true );
         
-        this.player.score = this.player.hand.getScore();
-        this.dealer.score = this.dealer.hand.getScore();
+        this.dealer.keepScore();
+        this.player.keepScore();
+        
         
         showScores();
         
@@ -90,9 +87,8 @@ public class Blackjack
             String move = getMove(this.input);
             if (move.equals( "hit" ))
                 {
-                this.player.hand.hit( this.deck );
-                this.player.score = this.player.hand.getScore();
-                this.player.hand.cards.get( this.player.hand.cards.size() - 1 ).reveal();
+                this.player.hit( this.deck, true );
+                this.player.keepScore();
                 showScores();
                 }
             else if (move.equals( "stand" ))
