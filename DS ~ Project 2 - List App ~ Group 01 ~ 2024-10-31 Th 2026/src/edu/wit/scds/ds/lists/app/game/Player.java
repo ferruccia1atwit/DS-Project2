@@ -43,7 +43,7 @@ public class Player
     Hand hand;
     int score;
     int balance;
-    
+    boolean busted;
     
     public Player(String username)
     {
@@ -52,12 +52,14 @@ public class Player
     this.hand = new Hand();
     this.score = 0;
     this.balance = 500;
+    this.busted = false;
     
     }
     
     void resetHand()
     {
     this.hand = new Hand();
+    this.busted = false;
     } 
     
     
